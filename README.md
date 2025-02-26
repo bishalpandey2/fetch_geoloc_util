@@ -10,7 +10,7 @@ If Python is not installed, download it from [Python's official website](https:/
 ### Installing Dependencies
 Clone this repository and navigate into the project folder:
 ```bash
-git clone <repository_url>
+git clone git@github.com:bishalpandey2/fetch_geoloc_util.git
 cd fetch_geoloc_util
 ```
 
