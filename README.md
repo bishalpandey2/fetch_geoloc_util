@@ -28,7 +28,7 @@ pip install -r requirements.txt
 ### Running the Application
 To fetch geolocation data for a city, use:
 ```bash
-python src/main.py "New York"
+python src/main.py "Los Angeles"
 ```
 
 ### Running Tests
