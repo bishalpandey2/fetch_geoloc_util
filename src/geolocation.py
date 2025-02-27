@@ -1,5 +1,5 @@
 import requests
-from config import API_KEY, BASE_URL_CITY, BASE_URL_ZIP
+from src.config import API_KEY, BASE_URL_CITY, BASE_URL_ZIP
 from logger import logger
 
 def get_geolocation_by_city(city, state, country="US"):
