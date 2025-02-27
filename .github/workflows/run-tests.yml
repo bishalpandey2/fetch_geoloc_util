@@ -1,0 +1,55 @@
+name: Run Geolocation Tests
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * *'  # Runs daily at midnight UTC
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # Python Setup for Backend Tests
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'
+
+      - name: Install Python Dependencies
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
+
+      - name: Run Python Tests (pytest)
+        run: |
+          source venv/bin/activate
+          pytest tests/
+
+      # Node.js Setup for Cypress API Tests
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Cypress Dependencies
+        run: |
+          npm install
+
+      - name: Run Cypress API Tests
+        run: |
+          npx cypress run --headless
+
+      # Upload Test Results (Optional)
+      - name: Upload Cypress Test Results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-results
+          path: cypress/screenshots

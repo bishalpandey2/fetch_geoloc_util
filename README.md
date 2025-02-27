@@ -10,7 +10,7 @@ If Python is not installed, download it from [Python's official website](https:/
 ### Installing Dependencies
 Clone this repository and navigate into the project folder:
 ```bash
-git clone <repository_url>
+git clone git@github.com:bishalpandey2/fetch_geoloc_util.git
 cd fetch_geoloc_util
 ```
 
@@ -53,6 +53,76 @@ To remove the installed package:
 ```bash
 pip uninstall geoloc_util
 ```
+
+### Cypress API Tests
+Cypress is used to test API responses from OpenWeather's Geolocation API.
+
+#### **Install Cypress**
+Make sure you have Node.js installed, then install Cypress:
+```bash
+npm install cypress --save-dev
+```
+
+### Installing TypeScript
+Cypress tests are written in **TypeScript**, so TypeScript must be installed. Run the following command:
+```bash
+npm install typescript @types/node @cypress/webpack-preprocessor --save-dev
+```
+Additionally, install Cypress type definitions:
+```bash
+npm install @types/cypress --save-dev
+```
+
+### Configuring TypeScript for Cypress
+Ensure `tsconfig.json` is present in the root directory with the following configuration:
+```json
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "lib": ["es2016", "dom"],
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "allowJs": true,
+    "outDir": "./dist",
+    "strict": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["cypress/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}
+```
+
+#### **Run Cypress Tests**
+To execute all Cypress API tests in **headless mode**:
+```bash
+npx cypress run
+```
+To open Cypress Test Runner for an interactive test run:
+```bash
+npx cypress open
+```
+Then select `geolocation.cy.ts` to run the tests.
+
+#### **Cypress Folder Structure**
+```
+cypress/
+│── e2e/
+│   │── geolocation.cy.ts  # Cypress API tests
+│── cypress.config.ts  # Cypress configuration file
+```
+
+#### **Cypress Test Cases Include:**
+✅ Fetching geolocation data by **city and state**
+✅ Fetching geolocation data by **zip code**
+✅ Handling **multiple locations**
+✅ Testing **invalid inputs** (invalid city, zip code)
+✅ Checking **API response time**
 
 ### Troubleshooting
 - Ensure all dependencies are installed.
