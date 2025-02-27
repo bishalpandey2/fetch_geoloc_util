@@ -30,7 +30,7 @@ jobs:
       - name: Run Python Tests (pytest)
         run: |
           source venv/bin/activate
-          pytest tests/
+          PYTHONPATH=src pytest tests/
 
       # Node.js Setup for Cypress API Tests
       - name: Set up Node.js
