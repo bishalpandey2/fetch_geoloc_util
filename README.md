@@ -109,14 +109,6 @@ npx cypress open
 ```
 Then select `geolocation.cy.ts` to run the tests.
 
-#### **Cypress Folder Structure**
-```
-cypress/
-│── e2e/
-│   │── geolocation.cy.ts  # Cypress API tests
-│── cypress.config.ts  # Cypress configuration file
-```
-
 #### **Cypress Test Cases Include:**
 ✅ Fetching geolocation data by **city and state**
 ✅ Fetching geolocation data by **zip code**
